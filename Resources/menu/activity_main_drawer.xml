@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+  <item android:title="App">
+    <menu>
+      <item
+          android:id="@+id/nav_tabacco_home"
+          android:icon="@drawable/ic_menu_manage"
+          android:title="Home" />
+      <item
+          android:id="@+id/nav_tabacco_new"
+          android:icon="@drawable/ic_menu_camera"
+          android:title="Neuer Tabak" />
+      <item
+          android:id="@+id/nav_user_change"
+          android:icon="@drawable/ic_menu_gallery"
+          android:title="Benutzer ändern" />
+    </menu>
+  </item>
+
+  <item android:title="Sync">
+    <menu>
+      <item
+          android:id="@+id/nav_file"
+          android:icon="@drawable/ic_menu_share"
+          android:title="File Transfer" />
+      <item
+          android:id="@+id/nav_bluetooth"
+          android:icon="@drawable/ic_menu_share"
+          android:title="Bluetooth" />
+    </menu>
+  </item>
+
+</menu>
