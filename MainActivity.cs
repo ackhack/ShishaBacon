@@ -40,20 +40,26 @@ namespace ShishaBacon
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
 
-            RaterSaved.Init(() =>
-            {
-                updateUsername();
-            });
-
-            TabaccoList.Init(() =>
-            {
-                finishedInit = true;
-                ShowTabaccoHome();
-            });
-
             BluetoothHelper.getPermission(BaseContext, this);
             ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadExternalStorage }, 1);
             ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.WriteExternalStorage }, 1);
+
+            TabaccoList.Init(() =>
+            {
+                RaterSaved.Init(() =>
+                {
+                    if (RaterSaved.GetRater().Name == Rater.DefaultName)
+                    {
+                        ShowRaterChange();
+                    } else
+                    {
+                        updateUsername();
+                        ShowTabaccoHome();
+                    }
+                    finishedInit = true;
+                });
+
+            });
         }
 
         public override void OnBackPressed()
@@ -80,7 +86,7 @@ namespace ShishaBacon
         {
             Rater user = RaterSaved.GetRater();
             if (user != null && FindViewById<AppCompatTextView>(Resource.Id.userName) != null)
-                FindViewById<AppCompatTextView>(Resource.Id.userName).SetText(user.name.ToCharArray(), 0, user.name.Length);
+                FindViewById<AppCompatTextView>(Resource.Id.userName).SetText(user.Name.ToCharArray(), 0, user.Name.Length);
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)

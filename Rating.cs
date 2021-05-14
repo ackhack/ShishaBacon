@@ -1,19 +1,21 @@
-﻿namespace ShishaBacon
+﻿using System;
+
+namespace ShishaBacon
 {
-    public class Rating
+    public class Rating: IComparable<Rating>
     {
         public const int Scaling = 10;
-        private const int maxRating = 10;
-        private const int minRating = 0;
+        public const int MaxRating = 10;
+        public const int MinRating = 0;
 
         public Rater rater;
-        private int value;
+        private int value = -1;
         public int Value
         {
             get { return value; }
             set
             {
-                if (value >= minRating * Scaling && value <= maxRating * Scaling)
+                if (value >= MinRating * Scaling && value <= MaxRating * Scaling)
                 {
                     this.value = value;
                 }
@@ -28,7 +30,12 @@
 
         public override string ToString()
         {
-            return rater.name + ": " + ((double)value / Scaling);
+            return rater.Name + ": " + ((double)value / Scaling);
+        }
+
+        public int CompareTo(Rating other)
+        {
+            return rater.Name.CompareTo(other.rater.Name);
         }
     }
 }

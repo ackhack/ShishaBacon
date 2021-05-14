@@ -27,13 +27,15 @@ namespace ShishaBacon
             var view = inflater.Inflate(Resource.Layout.layout_tabacco_menu, container, false);
 
             //Name
-            view.FindViewById<EditText>(Resource.Id.tm_name).Text = tabacco.name;
+            view.FindViewById<EditText>(Resource.Id.tm_name).Text = tabacco.Name;
 
             //Manufactorer
-            view.FindViewById<EditText>(Resource.Id.tm_manufacturer).Text = tabacco.manufactorer;
+            view.FindViewById<EditText>(Resource.Id.tm_manufacturer).Text = tabacco.Manufactorer;
 
             //Rating
             view.FindViewById<SeekBar>(Resource.Id.tm_rating).Progress = tabacco.GetOwnRating();
+            view.FindViewById<SeekBar>(Resource.Id.tm_rating).Max = Rating.MaxRating * Rating.Scaling;
+            view.FindViewById<SeekBar>(Resource.Id.tm_rating).Min = Rating.MinRating * Rating.Scaling;
             view.FindViewById<TextView>(Resource.Id.tm_rating_name).Text = "Bewertung: " + ((double)view.FindViewById<SeekBar>(Resource.Id.tm_rating).Progress) / Rating.Scaling;
             view.FindViewById<SeekBar>(Resource.Id.tm_rating).ProgressChanged += (sender, e) =>
             {
@@ -52,8 +54,8 @@ namespace ShishaBacon
             {
                 Tabacco newT = new Tabacco(tabacco);
 
-                newT.name = view.FindViewById<EditText>(Resource.Id.tm_name).Text;
-                newT.manufactorer = view.FindViewById<EditText>(Resource.Id.tm_manufacturer).Text;
+                newT.Name = view.FindViewById<EditText>(Resource.Id.tm_name).Text;
+                newT.Manufactorer = view.FindViewById<EditText>(Resource.Id.tm_manufacturer).Text;
                 int rating = view.FindViewById<SeekBar>(Resource.Id.tm_rating).Progress;
 
                 newT.UpdateRating(new Rating(RaterSaved.GetRater(), rating));

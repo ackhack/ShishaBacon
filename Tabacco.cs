@@ -4,12 +4,23 @@ using System.Drawing;
 
 namespace ShishaBacon
 {
-    public class Tabacco
+    public class Tabacco : IComparable<Tabacco>
     {
-        public string name = "";
-        public string manufactorer = "";
+        private string name = "";
+        private string manufactorer = "";
         public List<Rating> ratings = new List<Rating>();
         public Image image = null;
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value.Trim(); }
+        }
+        public string Manufactorer
+        {
+            get { return manufactorer; }
+            set { manufactorer = value.Trim(); }
+        }
 
         public Tabacco()
         {
@@ -18,14 +29,26 @@ namespace ShishaBacon
 
         public Tabacco(Tabacco old)
         {
-            name = old.name;
+            Name = old.Name;
             ratings = old.ratings;
             image = old.image;
-            manufactorer = old.manufactorer;
+            Manufactorer = old.Manufactorer;
+        }
+
+
+
+        private void SortRatings()
+        {
+            ratings.Sort();
         }
 
         public double GetAverageRating()
         {
+            if (ratings.Count == 0)
+            {
+                return 0;
+            }
+
             double tmp = 0;
             foreach (Rating rating in ratings)
             {
@@ -36,6 +59,11 @@ namespace ShishaBacon
 
         public bool AddRating(Rating rating)
         {
+            if (rating.Value == -1)
+            {
+                return false;
+            }
+
             foreach (Rating rat in ratings)
             {
                 if (rat.rater.Equals(rating.rater))
@@ -44,6 +72,7 @@ namespace ShishaBacon
                 }
             }
             ratings.Add(rating);
+            SortRatings();
             return true;
         }
 
@@ -76,6 +105,7 @@ namespace ShishaBacon
                 }
             }
             ratings.Add(rating);
+            SortRatings();
             return false;
         }
 
@@ -89,12 +119,12 @@ namespace ShishaBacon
                     return rat.Value;
                 }
             }
-            return 0;
+            return -1;
         }
 
         public override string ToString()
         {
-            return name + " - " + manufactorer;
+            return Name + " - " + Manufactorer;
         }
 
         public override bool Equals(object obj)
@@ -106,13 +136,27 @@ namespace ShishaBacon
 
             Tabacco tb = (Tabacco)obj;
 
-            return tb.name == name && tb.manufactorer == manufactorer;
+            return tb.Name == Name && tb.Manufactorer == Manufactorer;
+        }
+
+        public int CompareTo(Tabacco other)
+        {
+            if (Name == other.Name)
+            {
+                return Manufactorer.CompareTo(other.Manufactorer);
+            }
+            return Name.CompareTo(other.Name);
         }
     }
 
     static class TabaccoList
     {
         private static List<Tabacco> list = new List<Tabacco>();
+
+        private static void SortList()
+        {
+            list.Sort();
+        }
 
         public static List<Tabacco> GetList()
         {
@@ -145,6 +189,7 @@ namespace ShishaBacon
             }
 
             list.Add(tabacco);
+            SortList();
             Storage.SetTabaccoList(list);
 
             return true;
@@ -179,8 +224,10 @@ namespace ShishaBacon
                 if (list.Contains(tb))
                 {
                     list.Find(t => { return t.Equals(tb); }).AddRatings(tb.GetRatings());
-                } else
+                }
+                else
                 {
+                    SortList();
                     list.Add(tb);
                 }
             }

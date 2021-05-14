@@ -18,7 +18,7 @@ namespace ShishaBacon
         {
             var view = inflater.Inflate(Resource.Layout.layout_rater_change, container, false);
 
-            view.FindViewById<EditText>(Resource.Id.rc_text).Text = RaterSaved.GetRater().name;
+            view.FindViewById<EditText>(Resource.Id.rc_text).Text = RaterSaved.GetRater().Name;
 
             view.FindViewById<Button>(Resource.Id.rc_btn).Click += (sender, e) =>
             {

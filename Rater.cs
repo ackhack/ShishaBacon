@@ -5,11 +5,24 @@ namespace ShishaBacon
 {
     public class Rater
     {
-        public string name;
+        public const string DefaultName = "Unknown";
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value.Trim();
+            }
+        }
 
         public Rater(string name)
         {
-            this.name = name;
+            Name = name;
         }
         public override bool Equals(object obj)
         {
@@ -17,13 +30,13 @@ namespace ShishaBacon
             {
                 return false;
             }
-            return ((Rater)obj).name == name;
+            return ((Rater)obj).Name == Name;
         }
     }
 
     static class RaterSaved
     {
-        private static Rater raterr = new Rater("Unknown");
+        private static Rater raterr = new Rater(Rater.DefaultName);
 
         public async static void Init(Action callback)
         {

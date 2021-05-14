@@ -25,9 +25,11 @@ namespace ShishaBacon
             view.FindViewById<Button>(Resource.Id.tn_btn).Click += (sender, e) =>
             {
 
-                Tabacco tb = new Tabacco();
-                tb.name = view.FindViewById<EditText>(Resource.Id.tn_name).Text;
-                tb.manufactorer = view.FindViewById<EditText>(Resource.Id.tn_manufactorer).Text;
+                Tabacco tb = new Tabacco
+                {
+                    Name = view.FindViewById<EditText>(Resource.Id.tn_name).Text.Trim(),
+                    Manufactorer = view.FindViewById<EditText>(Resource.Id.tn_manufactorer).Text.Trim()
+                };
                 TabaccoList.AddTabacco(tb);
                 finished(this, null);
             };

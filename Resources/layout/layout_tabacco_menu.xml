@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tm_rating"
         android:max="100"
-        android:min="0"
+        android:min="-1"
         android:layout_weight="1"/>
     <TextView
         android:text="Durchschnittliche Bewertung"
