@@ -25,10 +25,10 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_weight="1"/>
-    <EditText
+    <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tm_manufacturer" 
+        android:id="@+id/tm_manufactorer" 
         android:layout_weight="1"/>
     <TextView
         android:text="Bewertung"

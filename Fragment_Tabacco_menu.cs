@@ -30,7 +30,8 @@ namespace ShishaBacon
             view.FindViewById<EditText>(Resource.Id.tm_name).Text = tabacco.Name;
 
             //Manufactorer
-            view.FindViewById<EditText>(Resource.Id.tm_manufacturer).Text = tabacco.Manufactorer;
+            view.FindViewById<AutoCompleteTextView>(Resource.Id.tm_manufactorer).Text = tabacco.Manufactorer;
+            view.FindViewById<AutoCompleteTextView>(Resource.Id.tm_manufactorer).Adapter = new ArrayAdapter(Activity, Resource.Layout.sb_listitem, TabaccoList.GetManufactorers());
 
             //Rating
             view.FindViewById<SeekBar>(Resource.Id.tm_rating).Progress = tabacco.GetOwnRating();
@@ -55,7 +56,7 @@ namespace ShishaBacon
                 Tabacco newT = new Tabacco(tabacco);
 
                 newT.Name = view.FindViewById<EditText>(Resource.Id.tm_name).Text;
-                newT.Manufactorer = view.FindViewById<EditText>(Resource.Id.tm_manufacturer).Text;
+                newT.Manufactorer = view.FindViewById<EditText>(Resource.Id.tm_manufactorer).Text;
                 int rating = view.FindViewById<SeekBar>(Resource.Id.tm_rating).Progress;
 
                 newT.UpdateRating(new Rating(RaterSaved.GetRater(), rating));

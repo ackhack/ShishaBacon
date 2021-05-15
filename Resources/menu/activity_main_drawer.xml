@@ -7,15 +7,15 @@
     <menu>
       <item
           android:id="@+id/nav_tabacco_home"
-          android:icon="@drawable/ic_menu_manage"
-          android:title="Home" />
+          android:icon="@drawable/ic_menu_list"
+          android:title="Hauptliste" />
       <item
           android:id="@+id/nav_tabacco_new"
-          android:icon="@drawable/ic_menu_camera"
+          android:icon="@drawable/ic_menu_box"
           android:title="Neuer Tabak" />
       <item
           android:id="@+id/nav_user_change"
-          android:icon="@drawable/ic_menu_gallery"
+          android:icon="@drawable/ic_menu_user"
           android:title="Benutzer ändern" />
     </menu>
   </item>
@@ -26,10 +26,6 @@
           android:id="@+id/nav_file"
           android:icon="@drawable/ic_menu_share"
           android:title="File Transfer" />
-      <item
-          android:id="@+id/nav_bluetooth"
-          android:icon="@drawable/ic_menu_share"
-          android:title="Bluetooth" />
     </menu>
   </item>
 

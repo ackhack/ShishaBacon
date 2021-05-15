@@ -9,7 +9,6 @@ namespace ShishaBacon
         private string name = "";
         private string manufactorer = "";
         public List<Rating> ratings = new List<Rating>();
-        public Image image = null;
 
         public string Name
         {
@@ -31,7 +30,6 @@ namespace ShishaBacon
         {
             Name = old.Name;
             ratings = old.ratings;
-            image = old.image;
             Manufactorer = old.Manufactorer;
         }
 
@@ -163,6 +161,15 @@ namespace ShishaBacon
             return list;
         }
 
+        public static List<Tabacco> GetFilteredList(string manufactorerName)
+        {
+            if (manufactorerName == "" || manufactorerName.ToLower() == "all")
+            {
+                return list;
+            }
+            return list.FindAll(x => { return x.Manufactorer.Equals(manufactorerName); });
+        }
+
         public async static void Init(Action callback)
         {
             var ret = await Storage.GetTabaccoList();
@@ -232,6 +239,20 @@ namespace ShishaBacon
                 }
             }
             Storage.SetTabaccoList(list);
+        }
+
+        public static List<string> GetManufactorers()
+        {
+            List<string> listn = new List<string>();
+
+            foreach (Tabacco tb in list)
+            {
+                if (!listn.Contains(tb.Manufactorer))
+                {
+                    listn.Add(tb.Manufactorer);
+                }
+            }
+            return listn;
         }
     }
 }

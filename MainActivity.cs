@@ -18,7 +18,7 @@ using Android.Bluetooth;
 
 namespace ShishaBacon
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true, Icon = "@mipmap/ic_launcher", RoundIcon = "@mipmap/ic_launcher_round")]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
         private bool finishedInit = false;
@@ -110,9 +110,9 @@ namespace ShishaBacon
                     ShowRaterChange();
                     break;
 
-                case Resource.Id.nav_bluetooth:
-                    //ShowSyncBluetooth();
-                    break;
+                //case Resource.Id.nav_bluetooth:
+                //    ShowSyncBluetooth();
+                //    break;
 
                 case Resource.Id.nav_file:
                     ShowSyncFile();
@@ -140,11 +140,6 @@ namespace ShishaBacon
 
             f.finished += (sender, e) =>
             {
-                InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-                if (imm != null && CurrentFocus != null && CurrentFocus.WindowToken != null)
-                {
-                    imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
-                }
                 ShowTabaccoHome();
             };
 
@@ -153,6 +148,11 @@ namespace ShishaBacon
 
         private void ShowTabaccoHome()
         {
+            InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+            if (imm != null && CurrentFocus != null && CurrentFocus.WindowToken != null)
+            {
+                imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            }
             Fragment_Tabacco_list list = new Fragment_Tabacco_list();
 
             list.itemClicked += (sender, e) =>
@@ -160,12 +160,6 @@ namespace ShishaBacon
                 Fragment_Tabacco_menu f = new Fragment_Tabacco_menu(e.Tabacco);
                 f.finished += (sender, e) =>
                 {
-                    InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-                    if (imm != null && CurrentFocus != null && CurrentFocus.WindowToken != null)
-                    {
-                        imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
-                    }
-
                     ShowTabaccoHome();
                 };
                 SupportFragmentManager.BeginTransaction().Replace(Resource.Id.mainFragment, f).Commit();
@@ -180,14 +174,7 @@ namespace ShishaBacon
 
             f.finished += (sender, e) =>
             {
-                InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-                if (imm != null && CurrentFocus != null && CurrentFocus.WindowToken != null)
-                {
-                    imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
-                }
-
                 updateUsername();
-
                 ShowTabaccoHome();
             };
 

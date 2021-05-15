@@ -32,13 +32,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <EditText
+    <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/tn_manufactorer"
-        android:inputType="text"/>
+        android:id="@+id/tn_manufactorer" />
 
     <Button
         android:text="Speichern"

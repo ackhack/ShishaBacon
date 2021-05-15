@@ -21,14 +21,14 @@ namespace ShishaBacon
         {
 
             var view = inflater.Inflate(Resource.Layout.layout_tabacco_new, container, false);
-
+            view.FindViewById<AutoCompleteTextView>(Resource.Id.tn_manufactorer).Adapter = new ArrayAdapter(Activity, Resource.Layout.sb_listitem, TabaccoList.GetManufactorers());
             view.FindViewById<Button>(Resource.Id.tn_btn).Click += (sender, e) =>
             {
 
                 Tabacco tb = new Tabacco
                 {
                     Name = view.FindViewById<EditText>(Resource.Id.tn_name).Text.Trim(),
-                    Manufactorer = view.FindViewById<EditText>(Resource.Id.tn_manufactorer).Text.Trim()
+                    Manufactorer = view.FindViewById<MultiAutoCompleteTextView>(Resource.Id.tn_manufactorer).Text.Trim()
                 };
                 TabaccoList.AddTabacco(tb);
                 finished(this, null);
