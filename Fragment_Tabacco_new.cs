@@ -3,7 +3,6 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.Fragment.App;
 using System;
-using Android.Views.InputMethods;
 
 namespace ShishaBacon
 {
@@ -28,7 +27,7 @@ namespace ShishaBacon
                 Tabacco tb = new Tabacco
                 {
                     Name = view.FindViewById<EditText>(Resource.Id.tn_name).Text.Trim(),
-                    Manufactorer = view.FindViewById<MultiAutoCompleteTextView>(Resource.Id.tn_manufactorer).Text.Trim()
+                    Manufactorer = view.FindViewById<AutoCompleteTextView>(Resource.Id.tn_manufactorer).Text.Trim()
                 };
                 TabaccoList.AddTabacco(tb);
                 finished(this, null);

@@ -1,4 +1,7 @@
-﻿1.2.0: 15.05.2021
+﻿1.2.1: 21.005.2021
+	-Fixed not being able to add Tabacco
+
+1.2.0: 15.05.2021
 	-App now has its own Icon
 	-Version gets updated now
 	-List can be filtered by Manufactorer
