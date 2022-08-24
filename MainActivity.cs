@@ -9,10 +9,7 @@ using AndroidX.DrawerLayout.Widget;
 using Google.Android.Material.Navigation;
 using Android.Views.InputMethods;
 using Android.Content;
-using System;
-using AndroidX.Core.Content;
 using Android;
-using Android.Content.PM;
 using AndroidX.Core.App;
 using Android.Bluetooth;
 
@@ -40,9 +37,8 @@ namespace ShishaBacon
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
 
-            BluetoothHelper.getPermission(BaseContext, this);
-            ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadExternalStorage }, 1);
-            ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.WriteExternalStorage }, 1);
+            //BluetoothHelper.getPermission(BaseContext, this);
+            ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage }, 1);
 
             TabaccoList.Init(() =>
             {
@@ -51,7 +47,8 @@ namespace ShishaBacon
                     if (RaterSaved.GetRater().Name == Rater.DefaultName)
                     {
                         ShowRaterChange();
-                    } else
+                    }
+                    else
                     {
                         updateUsername();
                         ShowTabaccoHome();
